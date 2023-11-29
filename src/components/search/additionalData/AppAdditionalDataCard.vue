@@ -1,7 +1,9 @@
 <template>
-  <div class="app-additional-data-card">
-    <h1 class="card__title">{{ item.localname }}</h1>
-    <div class="card__table">
+  <div class="app-additional-data-card card">
+    <h1 class="card__title">
+      {{ item.localname }}
+    </h1>
+    <div class="card__table table">
       <div
         v-for="item in dataForTable"
         :key="item.id"
@@ -30,37 +32,37 @@ const dataForTable = computed(() => {
     {
       id: 0,
       key: 'Name',
-      value: item.value.localname
+      value: item.value.localname,
     },
     {
       id: 1,
       key: 'Type',
-      value: `${item.value.category}:${item.value.type}`
+      value: `${item.value.category}:${item.value.type}`,
     },
     {
       id: 2,
       key: 'Last Updated',
-      value: item.value.indexed_date
+      value: item.value.indexed_date,
     },
     {
       id: 3,
       key: 'Admin level',
-      value: item.value.admin_level
+      value: item.value.admin_level,
     },
     {
       id: 4,
       key: 'Search Rating',
-      value: item.value.rank_search
+      value: item.value.rank_search,
     },
     {
       id: 5,
       key: 'Postcode',
-      value: item.value.calculated_postcode
+      value: item.value.calculated_postcode,
     },
     {
       id: 6,
       key: 'Centre Point (lat,lon)',
-      value: item.value.centroid.coordinates.join(', ')
+      value: item.value.centroid.coordinates.join(', '),
     }
   ]
 })

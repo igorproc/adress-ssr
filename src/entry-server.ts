@@ -4,21 +4,24 @@ import { createApp } from './main'
 function renderPreloadLinks(modules, manifest) {
   let links = ''
   const seen = new Set()
+
   modules.forEach((id) => {
     const files = manifest[id]
-    if (files) {
-      files.forEach((file) => {
-        if (!seen.has(file)) {
-          seen.add(file)
-          links += renderPreloadLink(file)
-        }
-      })
+    if (!files) {
+      return
     }
+
+    files.forEach((file) => {
+      if (!seen.has(file)) {
+        seen.add(file)
+        links += renderPreloadLink(file)
+      }
+    })
   })
   return links
 }
 
-function renderPreloadLink(file) {
+function renderPreloadLink(file: string) {
   if (file.endsWith('.js')) {
     return `<link rel="modulepreload" crossorigin href="${file}">`
   } else if (file.endsWith('.css')) {
@@ -28,13 +31,13 @@ function renderPreloadLink(file) {
   }
 }
 
-function renderTeleports(teleports) {
+function renderTeleports(teleports: Record<string, string>) {
   if (!teleports) {
     return ''
   }
 
-  return Object.entries(teleports).reduce((all, [key, value]) => {
-    if (key.startsWith('#el-popper-container-')) {
+  return Object.entries(teleports).reduce((all, [key, value]: [string, string]) => {
+    if (key.startWith('#el-popper-container-')) {
       return `${all}<div id="${key.slice(1)}">${value}</div>`
     }
     return all
@@ -47,7 +50,7 @@ export async function render(url, manifest) {
     await router.push(url)
     await router.isReady()
 
-    const ctx = {}
+    const ctx: Record<string, any> = {}
     const html = await renderToString(app, ctx)
     const preloadLinks = renderPreloadLinks(ctx.modules, manifest)
     const teleports = renderTeleports(ctx.teleports)

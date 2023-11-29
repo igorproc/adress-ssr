@@ -4,6 +4,7 @@
       v-for="place in itemsList"
       :key="place.place_id"
       :item="place"
+      class="list__item"
       @on-select-address="onSelectAddress"
     />
   </div>

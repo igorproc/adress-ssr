@@ -50,7 +50,6 @@ const indexStore = useIndexStore()
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    border: 1px solid #888;
     width: 80%;
     text-align: center;
     .dialog__wrapper {
