@@ -1,9 +1,11 @@
-import path from 'path';
-import { defineConfig } from 'vite';
-import eslintPlugin from 'vite-plugin-eslint';
-import vuePlugin from '@vitejs/plugin-vue';
-import Components from 'unplugin-vue-components/vite';
-import AutoImport from 'unplugin-auto-import/vite';
+import path from 'path'
+import { defineConfig } from 'vite'
+
+import eslintPlugin from 'vite-plugin-eslint'
+import vuePlugin from '@vitejs/plugin-vue'
+
+import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
 
 export default defineConfig({
   plugins: [
@@ -20,7 +22,10 @@ export default defineConfig({
     })
   ],
   server: {
-    port: 3000
+    port: 3000,
+    proxy: {
+      '/api': 'https://nominatim.openstreetmap.org'
+    }
   },
   resolve: {
     alias: {

@@ -29,7 +29,10 @@ function renderPreloadLink(file) {
 }
 
 function renderTeleports(teleports) {
-  if (!teleports) return ''
+  if (!teleports) {
+    return ''
+  }
+
   return Object.entries(teleports).reduce((all, [key, value]) => {
     if (key.startsWith('#el-popper-container-')) {
       return `${all}<div id="${key.slice(1)}">${value}</div>`
@@ -43,11 +46,13 @@ export async function render(url, manifest) {
   try {
     await router.push(url)
     await router.isReady()
+
     const ctx = {}
     const html = await renderToString(app, ctx)
     const preloadLinks = renderPreloadLinks(ctx.modules, manifest)
     const teleports = renderTeleports(ctx.teleports)
     const state = JSON.stringify(store.state.value)
+
     return [html, state, preloadLinks, teleports]
   } catch (error) {
     console.log(error)

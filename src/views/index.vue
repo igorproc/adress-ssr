@@ -1,5 +1,9 @@
 <template>
   <div class="index">
-    Hello World
+    <AppSearch />
   </div>
 </template>
+
+<script setup lang="ts">
+import AppSearch from '@/components/search/AppSearch.vue'
+</script>

@@ -9,7 +9,17 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    CommonAppGlobalScope: typeof import('./src/components/common/AppGlobalScope.vue')['default']
+    CommonAppHeader: typeof import('./src/components/common/AppHeader.vue')['default']
+    CommonAppLogo: typeof import('./src/components/common/AppLogo.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchAdditionalDataAppAdditionalDataCard: typeof import('./src/components/search/additionalData/AppAdditionalDataCard.vue')['default']
+    SearchAdditionalDataAppAdditionalDataModal: typeof import('./src/components/search/additionalData/AppAdditionalDataModal.vue')['default']
+    SearchAppSearch: typeof import('./src/components/search/AppSearch.vue')['default']
+    SearchAppSearchHeader: typeof import('./src/components/search/AppSearchHeader.vue')['default']
+    SearchAppSearchMap: typeof import('./src/components/search/AppSearchMap.vue')['default']
+    SearchListAppSearchItem: typeof import('./src/components/search/list/AppSearchItem.vue')['default']
+    SearchListAppSearchList: typeof import('./src/components/search/list/AppSearchList.vue')['default']
   }
 }
